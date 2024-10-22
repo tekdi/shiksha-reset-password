@@ -86,9 +86,7 @@ const PasswordCreate: React.FC<PasswordCreateProps> = ({
 
       setLoading(true);
 
-      // Removed login API call
       try {
-        // Assuming some validation logic here
         handleResetPassword(password);
       } catch (error) {
         console.error("Error verifying old password", error);
