@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import CheckIcon from "@mui/icons-material/Check";
-import { login } from "../services/ResetPasswordService";
 import showToastMessage from "../components/showToastMessage";
 import { PasswordCreateProps } from "../utils/Interfaces";
 // import { useNavigate } from "react-router-dom";
@@ -87,17 +86,10 @@ const PasswordCreate: React.FC<PasswordCreateProps> = ({
 
       setLoading(true);
 
+      // Removed login API call
       try {
-        const response = await login({
-          username: userIdName,
-          password: oldPassword,
-        });
-        if (response) {
-          handleResetPassword(password);
-          // const username = localStorage.getItem("userEmail");
-        } else {
-          setOldPasswordError(true);
-        }
+        // Assuming some validation logic here
+        handleResetPassword(password);
       } catch (error) {
         console.error("Error verifying old password", error);
         setOldPasswordError(true);
