@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - 'v*'  # Trigger workflow on tag pushes matching the pattern 'v*'
+    branches:
+      - release-1.0.0  # Specify the release branch where tags will trigger the workflow
+      - main
 
 jobs:
   s3_deployment_PROD:
