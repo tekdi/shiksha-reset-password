@@ -17,10 +17,12 @@ export const forgotPasswordAPI = async (
 export const resetPasswordLink = async (username: any): Promise<any> => {
   const apiUrl: string = `${import.meta.env.VITE_BASE_URL}/password-reset-link`;
   try {
-    let redirectUrl = import.meta.env.VITE_FRONTEND_BASE_URL || "";
-    if (redirectUrl === "" && typeof window !== "undefined") {
-      redirectUrl = window.location.origin;
-    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get("redirectUrl");
+    // let redirectUrl = import.meta.env.VITE_FRONTEND_BASE_URL || "";
+    // if (redirectUrl === "" && typeof window !== "undefined") {
+    //   redirectUrl = window.location.origin;
+    // }
     const response = await axios.post(apiUrl, { username, redirectUrl });
     return response?.data;
   } catch (error) {
