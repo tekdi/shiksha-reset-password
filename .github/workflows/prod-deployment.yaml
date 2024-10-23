@@ -3,9 +3,9 @@ name: S3 Deployment on the Pratham-PROD
 on:
   push:
     tags:
-      - 'v*'  # Trigger workflow on tag pushes matching the pattern 'v*'
+      - "v*" # Trigger workflow on tag pushes matching the pattern 'v*'
     branches:
-      - release-1.0.0  # Specify the release branch where tags will trigger the workflow
+      - release-1.0.0 # Specify the release branch where tags will trigger the workflow
       - main
 
 jobs:
@@ -15,12 +15,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Ensure all tags are fetched
+          fetch-depth: 0 # Ensure all tags are fetched
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Set TAG environment variable
         id: get_tag
@@ -58,15 +58,14 @@ jobs:
 
       - name: List Contents
         run: |
-           echo "Contents of the current directory (in reverse order):"
-            ls -lr
+          echo "Contents of the current directory (in reverse order):"
+           ls -lr
 
       - name: List Contents
         run: |
-           echo "Contents of the dist directory (in reverse order):"
-            cd 
-            ls -lr
-            
+          echo "Contents of the dist directory (in reverse order):"
+           cd 
+           ls -lr
 
       - name: Install AWS CLI
         run: |
@@ -76,9 +75,9 @@ jobs:
         run: |
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws configure set default.region ${{ secrets.AWS_S3_BUCKET_REGION }}  
+          aws configure set default.region ${{ secrets.AWS_S3_BUCKET_REGION }}
 
       - name: Upload to s3 Bucket
         run: |
-              aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_PROD }}/
-              aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }} --paths "/*"
+          aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_PROD }}/
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }} --paths "/*"
