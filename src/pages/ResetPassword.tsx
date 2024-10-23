@@ -16,6 +16,8 @@ const ResetPassword: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
   const [forgotPassword, setForgotPassword] = useState<boolean>(false);
   const [isTokenValid, setIsTokenValid] = useState<boolean>(true);
+  let urlParams = new URLSearchParams(window.location.search);
+  let redirectUrl = urlParams.get("redirectUrl") as string;
 
   const getTokenFromQuery = () => {
     const params = new URLSearchParams(location.search);
@@ -61,7 +63,7 @@ const ResetPassword: React.FC = () => {
   };
 
   const handlePrimaryButton = () => {
-    // navigate(`/login`);
+    window.open(redirectUrl);
   };
 
   return (
@@ -142,9 +144,9 @@ const ResetPassword: React.FC = () => {
                   fontSize: "14px",
                   fontWeight: "500",
                 }}
-                // onClick={() => {
-                //   navigate("/login");
-                // }}
+                onClick={() => {
+                  window.open(redirectUrl);
+                }}
               >
                 Back to login
               </Box>
