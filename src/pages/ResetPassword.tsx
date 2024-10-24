@@ -74,9 +74,7 @@ const ResetPassword: React.FC = () => {
         px: "16px",
         alignItems: "center",
         "@media (min-width: 700px)": {
-          height: "calc(100vh - 140px)",
-          overflowY: "auto",
-          margin: "70px",
+          height: "100vh",
         },
       }}
     >
