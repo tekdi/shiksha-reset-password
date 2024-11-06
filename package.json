@@ -13,7 +13,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.15.15",
-    "@mui/material": "^5.16.7",
+    "@mui/material": "5.15.21",
     "axios": "^1.7.7",
     "i18next": "^23.16.0",
     "jwt-decode": "^4.0.0",

@@ -23,8 +23,8 @@ const ForgotPassword: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<boolean>(false);
   const [maskEmail, setMaskEmail] = useState<string>("");
-  let urlParams = new URLSearchParams(window.location.search);
-  let redirectUrl = urlParams.get("redirectUrl") as string;
+  const urlParams = new URLSearchParams(window.location.search);
+  const redirectUrl = urlParams.get("redirectUrl") as string;
   // Function to handle input and convert to lowercase
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const lowercaseValue = event.target.value.toLowerCase();
