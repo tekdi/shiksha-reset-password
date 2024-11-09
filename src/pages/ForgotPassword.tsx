@@ -185,7 +185,7 @@ const ForgotPassword: React.FC = () => {
               cursor: "pointer", // Added a pointer cursor to indicate it's clickable
             }}
             onClick={() => {
-              window.open(redirectUrl);
+              window.open(redirectUrl, '_self');
             }}
           >
             Back to login

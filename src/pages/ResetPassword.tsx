@@ -63,7 +63,7 @@ const ResetPassword: React.FC = () => {
   };
 
   const handlePrimaryButton = () => {
-    window.open(redirectUrl);
+    window.open(redirectUrl, "_self");
   };
 
   return (
@@ -143,7 +143,7 @@ const ResetPassword: React.FC = () => {
                   fontWeight: "500",
                 }}
                 onClick={() => {
-                  window.open(redirectUrl);
+                  window.open(redirectUrl, "_self");
                 }}
               >
                 Back to login
