@@ -4,7 +4,7 @@ export const forgotPasswordAPI = async (
   newPassword: any,
   token: any
 ): Promise<any> => {
-  const apiUrl: string = `${import.meta.env.VITE_BASE_URL}/forgot-password`;
+  const apiUrl: string = `${import.meta.env.VITE_PUBLIC_MIDDLEWARE_URL}/forgot-password`;
   try {
     const response = await axios.post(apiUrl, { newPassword, token });
     return response?.data;
@@ -15,11 +15,11 @@ export const forgotPasswordAPI = async (
 };
 
 export const resetPasswordLink = async (username: any): Promise<any> => {
-  const apiUrl: string = `${import.meta.env.VITE_BASE_URL}/password-reset-link`;
+  const apiUrl: string = `${import.meta.env.VITE_PUBLIC_MIDDLEWARE_URL}/password-reset-link`;
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get("redirectUrl");
-    // let redirectUrl = import.meta.env.VITE_FRONTEND_BASE_URL || "";
+    // let redirectUrl = import.meta.env.VITE_FRONTEND_PUBLIC_MIDDLEWARE_URL || "";
     // if (redirectUrl === "" && typeof window !== "undefined") {
     //   redirectUrl = window.location.origin;
     // }
@@ -38,7 +38,7 @@ export const resetPasswordLink = async (username: any): Promise<any> => {
 //   key: any,
 //   email: any
 // ): Promise<any> => {
-//   const apiUrl: string =   `${process.env.NEXT_PUBLIC_NOTIFICATION_BASE_URL}/notification/send`;
+//   const apiUrl: string =   `${process.env.NEXT_PUBLIC_NOTIFICATION_PUBLIC_MIDDLEWARE_URL}/notification/send`;
 //   try {
 //     const response = await axios.post(apiUrl, { isQueue, context, key, email });
 //     console.log(email);
