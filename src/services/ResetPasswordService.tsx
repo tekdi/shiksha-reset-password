@@ -15,7 +15,7 @@ export const forgotPasswordAPI = async (
 };
 
 export const resetPasswordLink = async (username: any): Promise<any> => {
-  const apiUrl: string = `${import.meta.env.VITE_PUBLIC_MIDDLEWARE_URL}/password-reset-link`;
+  const apiUrl: string = `${import.meta.env.VITE_PUBLIC_MIDDLEWARE_URL}/user/v1/password-reset-link`;
   try {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get("redirectUrl");
