@@ -4,7 +4,7 @@ export const forgotPasswordAPI = async (
   newPassword: any,
   token: any
 ): Promise<any> => {
-  const apiUrl: string = `${import.meta.env.VITE_PUBLIC_MIDDLEWARE_URL}/forgot-password`;
+  const apiUrl: string = `${import.meta.env.VITE_PUBLIC_MIDDLEWARE_URL}/user/v1/forgot-password`;
   try {
     const response = await axios.post(apiUrl, { newPassword, token },
       {
