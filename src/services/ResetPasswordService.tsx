@@ -6,7 +6,10 @@ export const forgotPasswordAPI = async (
 ): Promise<any> => {
   const apiUrl: string = `${import.meta.env.VITE_PUBLIC_MIDDLEWARE_URL}/forgot-password`;
   try {
-    const response = await axios.post(apiUrl, { newPassword, token });
+    const response = await axios.post(apiUrl, { newPassword, token },
+      {
+        headers: { tenantid: import.meta.env.VITE_PUBLIC_TENANT_ID }, 
+      });
     return response?.data;
   } catch (error) {
     console.error("error in reset", error);
