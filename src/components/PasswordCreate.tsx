@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import CheckIcon from "@mui/icons-material/Check";
 import showToastMessage from "../components/showToastMessage";
 import { PasswordCreateProps } from "../utils/Interfaces";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 // import { useNavigate } from "react-router-dom";
 
 const PasswordCreate: React.FC<PasswordCreateProps> = ({
@@ -22,6 +24,11 @@ const PasswordCreate: React.FC<PasswordCreateProps> = ({
   const [showValidationMessages, setShowValidationMessages] = useState(false);
   const [loading, setLoading] = useState(false);
   const isEditPassword = window.location.pathname === "/edit-password";
+  const [visibility, setVisibility] = useState({
+    oldPassword: false,
+    password: false,
+    confirmPassword: false,
+  });
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -98,6 +105,9 @@ const PasswordCreate: React.FC<PasswordCreateProps> = ({
       handleResetPassword(password);
     }
   };
+  const handleToggleVisibility = (field: keyof typeof visibility) => {
+    setVisibility((prev) => ({ ...prev, [field]: !prev[field] }));
+  };
 
   return (
     <form autoComplete="off" onSubmit={handleFormSubmit}>
@@ -108,8 +118,20 @@ const PasswordCreate: React.FC<PasswordCreateProps> = ({
             name="old-password-field"
             autoComplete="new-password"
             InputLabelProps={{ shrink: true }}
-            type="password"
+            type={visibility.oldPassword ? 'text' : 'password'}
             value={oldPassword}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => handleToggleVisibility('oldPassword')}
+                    edge="end"
+                  >
+                    {visibility.oldPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
             onChange={(e) => {
               setOldPassword(e.target.value);
               if (oldPasswordError) {
@@ -140,7 +162,19 @@ const PasswordCreate: React.FC<PasswordCreateProps> = ({
           name="new-password-field"
           autoComplete="new-password"
           InputLabelProps={{ shrink: true }}
-          type="password"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() => handleToggleVisibility('password')}
+                  edge="end"
+                >
+                  {visibility.password ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          type={visibility.password ? 'text' : 'password'}
           value={password}
           onChange={handlePasswordChange}
           error={passwordError || samePasswordError}
@@ -232,7 +266,19 @@ const PasswordCreate: React.FC<PasswordCreateProps> = ({
           name="confirm-password-field"
           autoComplete="new-password"
           InputLabelProps={{ shrink: true }}
-          type="password"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() => handleToggleVisibility('confirmPassword')}
+                  edge="end"
+                >
+                  {visibility.confirmPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          type={visibility.confirmPassword ? 'text' : 'password'}
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
           error={confirmPasswordError}
