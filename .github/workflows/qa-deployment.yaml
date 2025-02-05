@@ -1,4 +1,4 @@
-name: S3 Deployment on the Pratham-qa
+name: S3 Deployment on the Pratham-QA
 on:
   workflow_dispatch:
   
