@@ -1,7 +1,10 @@
 name: S3 Deployment on the Pratham-DEV
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - release-1.0.0
+
 jobs:
   s3_deployment_dev:
     runs-on: ubuntu-latest
